@@ -1,4 +1,4 @@
-package hei.school.carshow.service;
+package hei.school.carshow.service.configuration;
 
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
