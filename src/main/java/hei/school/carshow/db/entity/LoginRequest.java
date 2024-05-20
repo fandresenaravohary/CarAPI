@@ -1,2 +1,9 @@
-package hei.school.carshow.db.entity;public class LoginRequest {
+package hei.school.carshow.db.entity;
+
+import lombok.Data;
+
+@Data
+public class LoginRequest {
+    private String username;
+    private String password;
 }
