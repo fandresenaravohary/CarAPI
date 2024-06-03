@@ -1,0 +1,84 @@
+package hei.school.carshow.config;
+
+import hei.school.carshow.service.FirebaseService;
+import hei.school.carshow.service.UserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.OrRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
+
+@Configuration
+@EnableWebSecurity
+@RequiredArgsConstructor
+public class SecurityConf {
+    private final FirebaseService firebaseService;
+    private final UserService userService;
+    private final AuthProvider authProvider;
+
+    public FirebaseAuthFilter configureFilter(RequestMatcher matcher){
+        return new FirebaseAuthFilter(firebaseService, userService, matcher);
+    }
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+                .formLogin(AbstractHttpConfigurer::disable)
+                .csrf(AbstractHttpConfigurer::disable)
+                .logout(AbstractHttpConfigurer::disable)
+                .httpBasic(AbstractHttpConfigurer::disable)
+                .cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer
+                        .configurationSource( request -> {
+                            CorsConfiguration configuration = new CorsConfiguration();
+                            configuration.addAllowedHeader("*");
+                            configuration.addAllowedMethod("*");
+                            configuration.addAllowedOrigin("*");
+                            return configuration;
+                        })
+                )
+                // not authenticated
+                .addFilterBefore(configureFilter(
+                                new OrRequestMatcher(
+                                        new AntPathRequestMatcher("/ping"),
+                                        new AntPathRequestMatcher("/dummy-table"),
+                                        new AntPathRequestMatcher("/users/*")
+                                )),
+                        UsernamePasswordAuthenticationFilter.class
+                )
+                .authenticationProvider(authProvider)
+                .authorizeHttpRequests(auth-> auth
+                        .requestMatchers("/ping")
+                        .permitAll()
+                        .requestMatchers("/dummy-table")
+                        .permitAll()
+                        .requestMatchers("/users/*")
+                        .permitAll()
+
+                        // authenticated
+                        .requestMatchers("/whoami")
+                        .authenticated()
+                        .requestMatchers("/users")
+                        .authenticated()
+                        .requestMatchers("/forms")
+                        .authenticated()
+                        .requestMatchers("/forms/*")
+                        .authenticated()
+                        .requestMatchers("/forms/*/questions")
+                        .authenticated()
+                        .requestMatchers("/forms/*/answers")
+                        .authenticated()
+                        .requestMatchers("/forms/*/can/reply")
+                        .authenticated()
+                        .requestMatchers("/forms/reply")
+                        .authenticated()
+                );
+        return http.build();
+    }
+}

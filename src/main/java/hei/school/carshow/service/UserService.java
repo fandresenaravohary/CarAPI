@@ -18,30 +18,14 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-    private final JwtService jwtService;
-
-    public String login(LoginRequest request) {
-        Optional<User> userOptional = userRepository.findByEmail(request.getUsername());
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            if (request.getPassword().equals(user.getPassword())) {
-                return jwtService.generateToken(user);
-            }
-        }
-        return null;
-    }
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
     @SuppressWarnings("null")
-    public User getUserById(UUID id) {
-        Optional<User> userOptional = userRepository.findById(id);
-        if (userOptional.isPresent()) {
-            return userOptional.get();
-        }
-        return null;
+    public Optional<User>  getUserById(UUID id) {
+        return userRepository.findById(id);
     }
 
     public User createUser(User user) {
@@ -71,4 +55,9 @@ public class UserService {
     public void deleteUserById(UUID id) {
         userRepository.deleteById(id);
     }
+
+    public User saveOrUpdate(User toSave){
+        return userRepository.save(toSave);
+    }
+
 }
