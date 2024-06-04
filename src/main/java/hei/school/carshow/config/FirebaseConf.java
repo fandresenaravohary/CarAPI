@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 @Configuration
@@ -16,10 +17,15 @@ public class FirebaseConf {
     public FirebaseAuth firebaseApp() throws IOException {
         String firebaseKey = System.getenv("FIREBASE_KEY");
         var stream = new ByteArrayInputStream(firebaseKey.getBytes());
+        FileInputStream serviceAccount =
+                new FileInputStream("c:\\Users\\VIVOBOOK\\Downloads\\auth-app-nextjs-3f087-firebase-adminsdk-10sr4-c160864253.json");
+
         FirebaseOptions options = new FirebaseOptions.Builder()
-                .setCredentials(GoogleCredentials.fromStream(stream))
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                 .build();
-        FirebaseApp firebaseApp = FirebaseApp.initializeApp(options);
-        return FirebaseAuth.getInstance(firebaseApp);
+
+        var fire = FirebaseApp.initializeApp(options);
+
+        return FirebaseAuth.getInstance(fire);
     }
 }
