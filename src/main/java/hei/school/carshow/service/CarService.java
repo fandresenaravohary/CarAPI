@@ -4,8 +4,10 @@ import hei.school.carshow.db.entity.Car;
 import hei.school.carshow.db.entity.Image;
 import hei.school.carshow.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,5 +57,9 @@ public class CarService {
 
     public void deleteCarById(String id) {
         carRepository.deleteById(id);
+    }
+
+    public List<String> getDistinctBrandsLimited(int limit) {
+        return carRepository.findDistinctByBrand((Pageable) PageRequest.of(0, limit));
     }
 }

@@ -15,9 +15,14 @@ public class CarController {
     @Autowired
     private CarService carService;
 
-    @GetMapping("/Cars")
+    @GetMapping("/cars")
     public List<Car> getAllCars() {
         return carService.getAllCar();
+    }
+
+    @GetMapping("/cars/{limit}")
+    public List<String> getSixCar(@PathVariable int limit) {
+        return carService.getDistinctBrandsLimited(limit);
     }
 
     @GetMapping("/admin/Car/{id}")
