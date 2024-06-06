@@ -48,7 +48,12 @@ public class SecurityConf {
                                 new OrRequestMatcher(
                                         new AntPathRequestMatcher("/ping"),
                                         new AntPathRequestMatcher("/dummy-table"),
-                                        new AntPathRequestMatcher("/users/*")
+                                        new AntPathRequestMatcher("/users/*"),
+                                        new AntPathRequestMatcher("/cars"),
+                                        new AntPathRequestMatcher("/Images"),
+                                        new AntPathRequestMatcher("/cars/model"),
+                                        new AntPathRequestMatcher("/cars/type"),
+                                        new AntPathRequestMatcher("/cars/typeModelPrice")
                                 )),
                         UsernamePasswordAuthenticationFilter.class
                 )
