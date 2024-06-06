@@ -62,4 +62,32 @@ public class CarService {
     public List<String> getDistinctBrandsLimited(int limit) {
         return carRepository.findDistinctByBrand((Pageable) PageRequest.of(0, limit));
     }
+
+    public List<String> getDistinctModel() {
+        return carRepository.findDistinctByModel();
+    }
+
+    public List<String> getTypeModelPrice() {
+        return carRepository.findTypeModelPrice();
+    }
+
+    public List<String> getType() {
+        return carRepository.findDistinctByType();
+    }
+
+    public double getMinPrice() {
+        return carRepository.findMin();
+    }
+
+    public double getMaxPrice() {
+        return carRepository.findMax();
+    }
+
+    public List<String> getMotorType() {
+        return carRepository.findDistinctByMotor_type();
+    }
+
+    public List<String> getCarInfo() {
+        return carRepository.findCarInfo();
+    }
 }

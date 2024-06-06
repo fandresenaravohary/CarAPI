@@ -25,6 +25,41 @@ public class CarController {
         return carService.getDistinctBrandsLimited(limit);
     }
 
+    @GetMapping("/cars/model")
+    public List<String> getModel() {
+        return carService.getDistinctModel();
+    }
+
+    @GetMapping("/cars/typeModelPrice")
+    public List<String> getTypeModelPrice() {
+        return carService.getTypeModelPrice();
+    }
+
+    @GetMapping("/cars/type")
+    public List<String> getTypeByPrice() {
+        return carService.getType();
+    }
+
+    @GetMapping("/car/minPrice")
+    public double getMinPrice() {
+        return carService.getMinPrice();
+    }
+
+    @GetMapping("/car/maxPrice")
+    public double getMaxPrice() {
+        return carService.getMaxPrice();
+    }
+
+    @GetMapping("/cars/motorType")
+    public List<String> getMotorType() {
+        return carService.getMotorType();
+    }
+
+    @GetMapping("/cars/Info")
+    public List<String> getInfoCar() {
+        return carService.getCarInfo();
+    }
+
     @GetMapping("/admin/Car/{id}")
     public Optional<Car> getCarById(@PathVariable String id) {
         return carService.getCarById(id);
