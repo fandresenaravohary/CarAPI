@@ -33,6 +33,6 @@ public interface CarRepository extends JpaRepository<Car, String> {
     @Query("select distinct c.motor_type from Car c")
     List<String> findDistinctByMotor_type();
 
-    /*@Query("select c.brand, c.color, c.description, c.model, c.motor_type, c.name, c.place_number, c.power, c.price, c.type, i.url from Car c inner join Image i on i.id_image = c.image")
-    List<String> findCarInfo();*/
+    @Query("select c.brand, c.color, c.description, c.model, c.motor_type, c.name, c.place_number, c.power, c.price, c.type, i.url from Car c inner join Image i on i.id_image = c.id_car")
+    List<String> findCarInfo();
 }

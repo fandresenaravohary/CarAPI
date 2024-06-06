@@ -53,7 +53,8 @@ public class SecurityConf {
                                         new AntPathRequestMatcher("/Images"),
                                         new AntPathRequestMatcher("/cars/model"),
                                         new AntPathRequestMatcher("/cars/type"),
-                                        new AntPathRequestMatcher("/cars/typeModelPrice")
+                                        new AntPathRequestMatcher("/cars/typeModelPrice"),
+                                        new AntPathRequestMatcher("/cars/Info")
                                 )),
                         UsernamePasswordAuthenticationFilter.class
                 )

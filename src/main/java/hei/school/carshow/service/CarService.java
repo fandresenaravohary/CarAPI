@@ -87,7 +87,7 @@ public class CarService {
         return carRepository.findDistinctByMotor_type();
     }
 
-    /*public List<String> getCarInfo() {
+    public List<String> getCarInfo() {
         return carRepository.findCarInfo();
-    }*/
+    }
 }

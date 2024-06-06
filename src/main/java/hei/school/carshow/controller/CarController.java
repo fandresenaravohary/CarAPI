@@ -55,11 +55,10 @@ public class CarController {
         return carService.getMotorType();
     }
 
-    /*
     @GetMapping("/cars/Info")
     public List<String> getInfoCar() {
         return carService.getCarInfo();
-    }*/
+    }
 
     @GetMapping("/admin/Car/{id}")
     public Optional<Car> getCarById(@PathVariable String id) {
