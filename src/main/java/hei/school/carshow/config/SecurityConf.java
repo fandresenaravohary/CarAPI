@@ -66,6 +66,18 @@ public class SecurityConf {
                         .permitAll()
                         .requestMatchers("/users/*")
                         .permitAll()
+                        .requestMatchers("/cars")
+                        .permitAll()
+                        .requestMatchers("/Images")
+                        .permitAll()
+                        .requestMatchers("/cars/model")
+                        .permitAll()
+                        .requestMatchers("/cars/type")
+                        .permitAll()
+                        .requestMatchers("/cars/typeModelPrice")
+                        .permitAll()
+                        .requestMatchers("/cars/Info")
+                        .permitAll()
 
                         // authenticated
                         .requestMatchers("/whoami")

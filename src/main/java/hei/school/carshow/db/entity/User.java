@@ -20,7 +20,7 @@ import java.util.UUID;
 public class User implements UserDetails {
     @Id
     @Column(name = "id_user", nullable = false)
-    private UUID id_user;
+    private String id_user;
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;
@@ -68,7 +68,7 @@ public class User implements UserDetails {
         return false;
     }
 
-    public User(UUID userId) {
+    public User(String userId) {
         this.id_user = userId;
     }
 }

@@ -41,10 +41,10 @@ public class FirebaseAuthFilter extends OncePerRequestFilter {
         String token = FirebaseAuthFilter.getFirebaseToken(request);
         try {
             FirebaseToken firebaseToken =  firebaseService.getFirebaseUserByToken(token);
-            Optional<User> user = userService.getUserById(UUID.fromString(firebaseToken.getUid()));
+            Optional<User> user = userService.getUserById(firebaseToken.getUid());
             FirebaseAuthentication authentication = new FirebaseAuthentication(
                     user.orElse(User.builder()
-                            .id_user(UUID.fromString(firebaseToken.getUid()))
+                            .id_user(firebaseToken.getUid())
                             .email(firebaseToken.getEmail())
                             .name(firebaseToken.getName() == null ? firebaseToken.getEmail() : firebaseToken.getName())
                             .build()

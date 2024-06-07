@@ -24,7 +24,7 @@ public class UserService {
     }
 
     @SuppressWarnings("null")
-    public Optional<User>  getUserById(UUID id) {
+    public Optional<User>  getUserById(String id) {
         return userRepository.findById(id);
     }
 
@@ -36,7 +36,7 @@ public class UserService {
     }
 
     @SuppressWarnings("null")
-    public User updateUser(UUID id, User updatedUser) {
+    public User updateUser(String id, User updatedUser) {
         Optional<User> existingUser = userRepository.findById(id);
 
         if (existingUser.isPresent()) {
@@ -52,7 +52,7 @@ public class UserService {
     }
 
     @SuppressWarnings("null")
-    public void deleteUserById(UUID id) {
+    public void deleteUserById(String id) {
         userRepository.deleteById(id);
     }
 

@@ -23,10 +23,10 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/User/{id}")
-    public User getUserById(@PathVariable UUID id){
+    /*@GetMapping("/User/{id}")
+    public User getUserById(@PathVariable String id){
         return userService.getUserById(id).orElseThrow(NotFoundException::new);
-    }
+    }*/
 
     @PostMapping("/User")
     public User createUser(@RequestBody User user) {
@@ -34,7 +34,7 @@ public class UserController {
     }
 
     @PutMapping("/admin/User/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable UUID id, @RequestBody User updateUser) {
+    public ResponseEntity<User> updateUser(@PathVariable String id, @RequestBody User updateUser) {
         User updatedUser = userService.updateUser(id, updateUser);
         if (updatedUser != null) {
             return ResponseEntity.ok(updatedUser);
@@ -44,13 +44,13 @@ public class UserController {
     }
 
     @DeleteMapping("/admin/User/Delete/{id}")
-    public void deleteUserById(@PathVariable UUID id) {
+    public void deleteUserById(@PathVariable String id) {
         userService.deleteUserById(id);
     }
 
     @GetMapping("/users/{userId}")
     public User getUserById(@PathVariable String userId){
-        return userService.getUserById(UUID.fromString(userId)).orElseThrow(NotFoundException::new);
+        return userService.getUserById(userId).orElseThrow(NotFoundException::new);
     }
 
 }
