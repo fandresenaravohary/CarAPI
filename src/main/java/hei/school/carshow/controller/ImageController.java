@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @RestController
 public class ImageController {
-    public ImageService imageService;
+    public final ImageService imageService;
 
     @GetMapping("/Images")
     public List<Image> findAllImage() {
@@ -20,7 +21,7 @@ public class ImageController {
     }
 
     @GetMapping("/image/{id}")
-    public Optional<Image> findImageById(@PathVariable String id) {
+    public Optional<Image> findImageById(@PathVariable UUID id) {
         return imageService.getImageById(id);
     }
 
@@ -30,7 +31,7 @@ public class ImageController {
     }
 
     @PutMapping("/admin/image/{id}")
-    public ResponseEntity<Image> updateImage(@PathVariable String id, @RequestBody Image image) {
+    public ResponseEntity<Image> updateImage(@PathVariable UUID id, @RequestBody Image image) {
         Image updatedImage = imageService.updateImage(id, image);
         if (updatedImage != null) {
             return ResponseEntity.ok(updatedImage);
@@ -40,7 +41,7 @@ public class ImageController {
     }
 
     @DeleteMapping("/admin/delete/image/{id}")
-    public void deleteImageById(@PathVariable String id) {
+    public void deleteImageById(@PathVariable UUID id) {
         imageService.deleteImageById(id);
     }
 }

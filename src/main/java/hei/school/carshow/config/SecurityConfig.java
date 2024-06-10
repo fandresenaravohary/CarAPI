@@ -2,7 +2,6 @@ package hei.school.carshow.config;
 
 import hei.school.carshow.repository.UserRepository;
 import hei.school.carshow.service.impl.JwtFilter;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,10 +25,14 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
 public class SecurityConfig {
     public final UserRepository userRepository;
     private final JwtFilter jwtFilter;
+
+    public SecurityConfig(UserRepository userRepository, JwtFilter jwtFilter) {
+        this.userRepository = userRepository;
+        this.jwtFilter = jwtFilter;
+    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

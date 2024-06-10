@@ -1,5 +1,7 @@
 package hei.school.carshow.controller;
 
+import hei.school.carshow.dtos.CarInfoDTO;
+import hei.school.carshow.dtos.CarTypePriceDTO;
 import hei.school.carshow.entity.Car;
 import hei.school.carshow.service.impl.CarService;
 import lombok.RequiredArgsConstructor;
@@ -8,12 +10,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
 public class CarController {
 
-    private CarService carService;
+    private final CarService carService;
 
     @GetMapping("/cars")
     public List<Car> getAllCars() {
@@ -21,7 +24,7 @@ public class CarController {
     }
 
     @GetMapping("/cars/{limit}")
-    public List<String> getSixCar(@PathVariable int limit) {
+    public List<String> getSixCar(@PathVariable Integer limit) {
         return carService.getDistinctBrandsLimited(limit);
     }
 
@@ -31,7 +34,7 @@ public class CarController {
     }
 
     @GetMapping("/cars/typeModelPrice")
-    public List<String> getTypeModelPrice() {
+    public List<CarTypePriceDTO> getTypeModelPrice() {
         return carService.getTypeModelPrice();
     }
 
@@ -56,12 +59,12 @@ public class CarController {
     }
 
     @GetMapping("/cars/Info")
-    public List<String> getInfoCar() {
+    public List<CarInfoDTO> getInfoCar() {
         return carService.getCarInfo();
     }
 
     @GetMapping("/admin/Car/{id}")
-    public Optional<Car> getCarById(@PathVariable String id) {
+    public Optional<Car> getCarById(@PathVariable UUID id) {
         return carService.getCarById(id);
     }
 
@@ -71,7 +74,7 @@ public class CarController {
     }
 
     @PutMapping("/admin/car/{id}")
-    public ResponseEntity<Car> updateCar(@PathVariable String id, @RequestBody Car car) {
+    public ResponseEntity<Car> updateCar(@PathVariable UUID id, @RequestBody Car car) {
         Car updatedCar = carService.updateCar(id, car);
         if (updatedCar != null) {
             return ResponseEntity.ok(updatedCar);
@@ -81,7 +84,7 @@ public class CarController {
     }
 
     @DeleteMapping("/admin/car/delete/{id}")
-    public void deleteCarById(@PathVariable String id) {
+    public void deleteCarById(@PathVariable UUID id) {
         carService.deleteCarById(id);
     }
 }

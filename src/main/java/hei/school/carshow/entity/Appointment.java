@@ -2,20 +2,24 @@ package hei.school.carshow.entity;
 
 import hei.school.carshow.enums.Status;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.UUID;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 @NoArgsConstructor
 @Entity
-@Table(name = "appointment")
+@Builder
 public class Appointment implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String appointmentId;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID appointmentId;
 
     private String name;
 
@@ -26,11 +30,8 @@ public class Appointment implements Serializable {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String message;
 
-    @Column(name = "contact")
     private String contact;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "appointment_date")
     private Instant appointmentDate;
 
     @Enumerated(EnumType.STRING)

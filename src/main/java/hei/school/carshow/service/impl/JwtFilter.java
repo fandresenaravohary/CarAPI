@@ -8,7 +8,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,11 +18,15 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 @Component
-@RequiredArgsConstructor
 public class JwtFilter extends OncePerRequestFilter {
-    private final JwtService jwtServiceImpl;
+    private final JwtService jwtService;
 
     private final UserRepository userRepository;
+
+    public JwtFilter(JwtService jwtServiceImpl, UserRepository userRepository) {
+        this.jwtService = jwtServiceImpl;
+        this.userRepository = userRepository;
+    }
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
@@ -36,10 +39,10 @@ public class JwtFilter extends OncePerRequestFilter {
             return;
         }
         jwt = authHeader.substring(7);
-        email = jwtServiceImpl.extractUsername(jwt);
+        email = jwtService.extractUsername(jwt);
         if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             User userDetails = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("Invalid Email"));
-            if (jwtServiceImpl.isTokenValid(jwt, userDetails)) {
+            if (jwtService.isTokenValid(jwt, userDetails)) {
                 var securityContext = SecurityContextHolder.createEmptyContext();
                 var token = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities()

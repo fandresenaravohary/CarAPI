@@ -1,5 +1,7 @@
 package hei.school.carshow.service.impl;
 
+import hei.school.carshow.dtos.CarInfoDTO;
+import hei.school.carshow.dtos.CarTypePriceDTO;
 import hei.school.carshow.entity.Car;
 import hei.school.carshow.entity.Image;
 import hei.school.carshow.repository.CarRepository;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +23,7 @@ public class CarService {
         return carRepository.save(car);
     }
 
-    public Optional<Car> getCarById(String id) {
+    public Optional<Car> getCarById(UUID id) {
         return carRepository.findById(id);
     }
 
@@ -28,7 +31,7 @@ public class CarService {
         return carRepository.findAll();
     }
 
-    public Car updateCar(String id, Car updatedCar) {
+    public Car updateCar(UUID id, Car updatedCar) {
         Optional<Car> existingCar = carRepository.findById(id);
 
         if (existingCar.isPresent()) {
@@ -40,9 +43,9 @@ public class CarService {
             carToUpdate.setModel(updatedCar.getModel());
             carToUpdate.setPrice(updatedCar.getPrice());
             carToUpdate.setColor(updatedCar.getColor());
-            carToUpdate.setMotor_type(updatedCar.getMotor_type());
+            carToUpdate.setMotorType(updatedCar.getMotorType());
             carToUpdate.setPower(updatedCar.getPower());
-            carToUpdate.setPlace_number(updatedCar.getPlace_number());
+            carToUpdate.setPlaceNumber(updatedCar.getPlaceNumber());
             carToUpdate.setStatus(updatedCar.getStatus());
             carToUpdate.setType(updatedCar.getType());
 
@@ -55,7 +58,7 @@ public class CarService {
         }
     }
 
-    public void deleteCarById(String id) {
+    public void deleteCarById(UUID id) {
         carRepository.deleteById(id);
     }
 
@@ -67,7 +70,7 @@ public class CarService {
         return carRepository.findDistinctByModel();
     }
 
-    public List<String> getTypeModelPrice() {
+    public List<CarTypePriceDTO> getTypeModelPrice() {
         return carRepository.findTypeModelPrice();
     }
 
@@ -84,10 +87,10 @@ public class CarService {
     }
 
     public List<String> getMotorType() {
-        return carRepository.findDistinctByMotor_type();
+        return carRepository.findDistinctByMotorType();
     }
 
-    public List<String> getCarInfo() {
+    public List<CarInfoDTO> getCarInfo() {
         return carRepository.findCarInfo();
     }
 }

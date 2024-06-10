@@ -7,8 +7,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.stereotype.Service;
 
+import java.rmi.server.UID;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +22,7 @@ public class UserService {
     }
 
     @SuppressWarnings("null")
-    public Optional<User> getUserById(String id) {
+    public Optional<User> getUserById(UUID id) {
         return userRepository.findById(id);
     }
 
@@ -32,7 +34,7 @@ public class UserService {
     }
 
     @SuppressWarnings("null")
-    public User updateUser(String id, User updatedUser) {
+    public User updateUser(UUID id, User updatedUser) {
         Optional<User> existingUser = userRepository.findById(id);
 
         if (existingUser.isPresent()) {
@@ -48,7 +50,7 @@ public class UserService {
     }
 
     @SuppressWarnings("null")
-    public void deleteUserById(String id) {
+    public void deleteUserById(UUID id) {
         userRepository.deleteById(id);
     }
 

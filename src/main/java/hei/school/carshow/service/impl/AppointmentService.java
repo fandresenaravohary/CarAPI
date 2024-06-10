@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -33,7 +34,7 @@ public class AppointmentService {
         return appointmentRepository.findAll();
     }
 
-    public Appointment updateAppointmentStatus(String appointmentId, Status newStatus) {
+    public Appointment updateAppointmentStatus(UUID appointmentId, Status newStatus) {
         Appointment appointment = appointmentRepository.findById(appointmentId)
                 .orElseThrow(() -> new RuntimeException("Appointment not found with id " + appointmentId));
 

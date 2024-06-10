@@ -2,10 +2,10 @@ package hei.school.carshow.repository;
 
 import hei.school.carshow.entity.Appointment;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @Repository
-@EnableJpaRepositories
-public interface AppointmentRepository extends JpaRepository<Appointment, String> {
+public interface AppointmentRepository extends JpaRepository<Appointment, UUID> {
 }

@@ -10,28 +10,32 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
-@Data
-@NoArgsConstructor
+@Getter
+@Setter
 @AllArgsConstructor
-@Builder
+@EqualsAndHashCode
+@ToString
+@NoArgsConstructor
 @Entity
+@Builder
 @Accessors(chain = true)
 @Table(name = "app_user")
 public class User implements UserDetails {
     @Id
-    @Column(name = "id_user", nullable = false)
-    private String userId;
+   @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID userId;
 
-    @Column(name = "name", nullable = false, length = 100)
     private String name;
 
-    @Column(name = "email", nullable = false, length = 200)
+    @Column(unique = true)
     private String email;
 
     @Getter
     @Column(name = "password", nullable = false)
-    private String password;
+    private String pwd;
+
     @Column(columnDefinition = "TEXT")
     private String token;
 
@@ -39,15 +43,16 @@ public class User implements UserDetails {
     private Role role;
 
     @OneToOne
-    @JoinColumn(name = "id_image")
     private Image image;
 
-    public User(String userId) {
-        this.userId = userId;
-    }
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+    @Override
+    public String getPassword() {
+        return pwd;
     }
 
     @Override

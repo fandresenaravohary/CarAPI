@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @CrossOrigin
 @RestController
@@ -31,7 +32,7 @@ public class UserController {
     }
 
     @PutMapping("/admin/User/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable String id, @RequestBody User updateUser) {
+    public ResponseEntity<User> updateUser(@PathVariable UUID id, @RequestBody User updateUser) {
         User updatedUser = userService.updateUser(id, updateUser);
         if (updatedUser != null) {
             return ResponseEntity.ok(updatedUser);
@@ -41,12 +42,12 @@ public class UserController {
     }
 
     @DeleteMapping("/admin/User/Delete/{id}")
-    public void deleteUserById(@PathVariable String id) {
+    public void deleteUserById(@PathVariable UUID id) {
         userService.deleteUserById(id);
     }
 
     @GetMapping("/users/{userId}")
-    public User getUserById(@PathVariable String userId) {
+    public User getUserById(@PathVariable UUID userId) {
         return userService.getUserById(userId).orElseThrow(NotFoundException::new);
     }
 

@@ -1,8 +1,10 @@
 package hei.school.carshow.dtos;
 
 
+import java.util.UUID;
+
 public record UserRequest(
-        String id,
+        UUID id,
 
         String email,
 

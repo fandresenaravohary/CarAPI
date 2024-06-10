@@ -46,9 +46,9 @@ public class AuthServiceImpl implements AuthService {
         }
 
         final var user = userMapper.toEntity(userRequest);
-        var pwd = user.getPassword();
+        var pwd = user.getPwd();
         if (pwd != null) {
-            user.setPassword(passwordEncoder.encode(pwd));
+            user.setPwd(passwordEncoder.encode(pwd));
         }
         user.setRole(Role.ADMIN);
         final var userCreated = userRepository.save(user);

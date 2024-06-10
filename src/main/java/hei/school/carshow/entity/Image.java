@@ -2,22 +2,24 @@ package hei.school.carshow.entity;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
-@NoArgsConstructor
+import java.util.UUID;
+
+@Getter
+@Setter
 @AllArgsConstructor
+@EqualsAndHashCode
+@ToString
+@NoArgsConstructor
 @Entity
-@Table(name = "image")
+@Builder
 public class Image {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_image", nullable = false)
-    private String imageId;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID imageId;
 
-    @Column(name = "url")
+    @Column(columnDefinition = "TEXT")
     private String url;
 
 }

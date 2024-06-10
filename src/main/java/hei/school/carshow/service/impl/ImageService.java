@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -21,11 +22,11 @@ public class ImageService {
         return imageRepository.save(image);
     }
 
-    public Optional<Image> getImageById(String id) {
+    public Optional<Image> getImageById(UUID id) {
         return imageRepository.findById(id);
     }
 
-    public Image updateImage(String id, Image updatedImage) {
+    public Image updateImage(UUID id, Image updatedImage) {
         Optional<Image> existingImage = imageRepository.findById(id);
 
         if (existingImage.isPresent()) {
@@ -39,7 +40,7 @@ public class ImageService {
         }
     }
 
-    public void deleteImageById(String id) {
+    public void deleteImageById(UUID id) {
         imageRepository.deleteById(id);
     }
 }
