@@ -43,12 +43,12 @@ public class CarController {
         return carService.getType();
     }
 
-    @GetMapping("/car/minPrice")
+    @GetMapping("/cars/minPrice")
     public double getMinPrice() {
         return carService.getMinPrice();
     }
 
-    @GetMapping("/car/maxPrice")
+    @GetMapping("/cars/maxPrice")
     public double getMaxPrice() {
         return carService.getMaxPrice();
     }
@@ -63,17 +63,17 @@ public class CarController {
         return carService.getCarInfo();
     }
 
-    @GetMapping("/admin/Car/{id}")
+    @GetMapping("/admin/cars/{id}")
     public Optional<Car> getCarById(@PathVariable UUID id) {
         return carService.getCarById(id);
     }
 
-    @PostMapping("/admin/Car")
+    @PostMapping("/admin/cars")
     public Car newCar(@RequestBody Car car) {
         return carService.newCar(car);
     }
 
-    @PutMapping("/admin/car/{id}")
+    @PutMapping("/admin/cars/{id}")
     public ResponseEntity<Car> updateCar(@PathVariable UUID id, @RequestBody Car car) {
         Car updatedCar = carService.updateCar(id, car);
         if (updatedCar != null) {
@@ -83,7 +83,7 @@ public class CarController {
         }
     }
 
-    @DeleteMapping("/admin/car/delete/{id}")
+    @DeleteMapping("/admin/cars/delete/{id}")
     public void deleteCarById(@PathVariable UUID id) {
         carService.deleteCarById(id);
     }

@@ -21,7 +21,7 @@ public class Car {
 
     private String name;
 
-    @Column( columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     private String brand;

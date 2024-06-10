@@ -20,17 +20,17 @@ public class ImageController {
         return imageService.getAllImage();
     }
 
-    @GetMapping("/image/{id}")
+    @GetMapping("/images/{id}")
     public Optional<Image> findImageById(@PathVariable UUID id) {
         return imageService.getImageById(id);
     }
 
-    @PostMapping("/admin/image")
+    @PostMapping("/admin/images")
     public Image newImage(@RequestBody Image image) {
         return imageService.insertImage(image);
     }
 
-    @PutMapping("/admin/image/{id}")
+    @PutMapping("/admin/images/{id}")
     public ResponseEntity<Image> updateImage(@PathVariable UUID id, @RequestBody Image image) {
         Image updatedImage = imageService.updateImage(id, image);
         if (updatedImage != null) {
@@ -40,7 +40,7 @@ public class ImageController {
         }
     }
 
-    @DeleteMapping("/admin/delete/image/{id}")
+    @DeleteMapping("/admin/delete/images/{id}")
     public void deleteImageById(@PathVariable UUID id) {
         imageService.deleteImageById(id);
     }

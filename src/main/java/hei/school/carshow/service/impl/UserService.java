@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.stereotype.Service;
 
-import java.rmi.server.UID;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;

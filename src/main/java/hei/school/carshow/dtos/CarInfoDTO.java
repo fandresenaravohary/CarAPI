@@ -1,6 +1,6 @@
 package hei.school.carshow.dtos;
 
-public record CarInfoDTO (
+public record CarInfoDTO(
         String brand,
         String color,
         String description,
@@ -11,4 +11,5 @@ public record CarInfoDTO (
         Double price,
         String type,
         String url
-) {}
+) {
+}

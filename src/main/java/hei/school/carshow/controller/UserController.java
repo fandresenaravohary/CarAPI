@@ -31,7 +31,7 @@ public class UserController {
         return userService.createUser(user);
     }
 
-    @PutMapping("/admin/user/{id}")
+    @PutMapping("/admin/users/{id}")
     public ResponseEntity<User> updateUser(@PathVariable UUID id, @RequestBody User updateUser) {
         User updatedUser = userService.updateUser(id, updateUser);
         if (updatedUser != null) {
