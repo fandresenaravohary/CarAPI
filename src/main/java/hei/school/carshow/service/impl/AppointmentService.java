@@ -1,13 +1,11 @@
-package hei.school.carshow.service;
+package hei.school.carshow.service.impl;
 
-import hei.school.carshow.db.entity.Appointment;
-import hei.school.carshow.db.entity.User;
-import hei.school.carshow.db.entity.enumm.Status;
+import hei.school.carshow.entity.Appointment;
+import hei.school.carshow.entity.User;
+import hei.school.carshow.enums.Status;
 import hei.school.carshow.repository.AppointmentRepository;
 import hei.school.carshow.repository.UserRepository;
-import jakarta.websocket.Session;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.message.Message;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +35,7 @@ public class AppointmentService {
 
     public Appointment updateAppointmentStatus(String appointmentId, Status newStatus) {
         Appointment appointment = appointmentRepository.findById(appointmentId)
-                .orElseThrow(() -> new RuntimeException("Appointment not found with id "+ appointmentId));
+                .orElseThrow(() -> new RuntimeException("Appointment not found with id " + appointmentId));
 
         Status oldStatus = appointment.getStatus();
         appointment.setStatus(newStatus);

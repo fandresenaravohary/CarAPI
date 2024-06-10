@@ -1,6 +1,6 @@
-package hei.school.carshow.db.entity;
+package hei.school.carshow.entity;
 
-import hei.school.carshow.db.entity.enumm.Status;
+import hei.school.carshow.enums.Status;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,20 +14,16 @@ import java.time.Instant;
 @Table(name = "appointment")
 public class Appointment implements Serializable {
     @Id
-    @Column(name = "id_appointment", nullable = false)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private String id_appointment;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String appointmentId;
 
-    @Column(name = "name")
     private String name;
 
-    @Column(name = "first_name")
-    private String first_name;
+    private String firstName;
 
-    @Column(name = "email")
     private String email;
 
-    @Column(name = "message", nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String message;
 
     @Column(name = "contact")
@@ -35,16 +31,14 @@ public class Appointment implements Serializable {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "appointment_date")
-    private Instant appointment_date;
+    private Instant appointmentDate;
 
     @Enumerated(EnumType.STRING)
     private Status status;
 
     @ManyToOne
-    @JoinColumn(name = "id_car")
     private Car car;
 
     @ManyToOne
-    @JoinColumn(name = "id_user")
     private User user;
 }

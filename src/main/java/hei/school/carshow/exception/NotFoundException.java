@@ -7,7 +7,7 @@ public class NotFoundException extends ApiException {
         super("Not found", HttpStatus.NOT_FOUND);
     }
 
-    public NotFoundException(String message){
+    public NotFoundException(String message) {
         super(message, HttpStatus.NOT_FOUND);
     }
 }

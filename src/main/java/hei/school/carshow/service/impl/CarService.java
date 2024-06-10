@@ -1,7 +1,7 @@
-package hei.school.carshow.service;
+package hei.school.carshow.service.impl;
 
-import hei.school.carshow.db.entity.Car;
-import hei.school.carshow.db.entity.Image;
+import hei.school.carshow.entity.Car;
+import hei.school.carshow.entity.Image;
 import hei.school.carshow.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;

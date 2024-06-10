@@ -1,17 +1,17 @@
 package hei.school.carshow.controller;
 
-import hei.school.carshow.db.entity.Image;
-import hei.school.carshow.service.ImageService;
-import org.springframework.beans.factory.annotation.Autowired;
+import hei.school.carshow.entity.Image;
+import hei.school.carshow.service.impl.ImageService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @RestController
 public class ImageController {
-    @Autowired
     public ImageService imageService;
 
     @GetMapping("/Images")

@@ -1,18 +1,14 @@
-package hei.school.carshow.service;
+package hei.school.carshow.service.impl;
 
-import hei.school.carshow.db.entity.LoginRequest;
-import hei.school.carshow.db.entity.User;
-import hei.school.carshow.db.entity.enumm.Role;
+import hei.school.carshow.entity.User;
+import hei.school.carshow.enums.Role;
 import hei.school.carshow.repository.UserRepository;
-import hei.school.carshow.service.configuration.JwtService;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -24,7 +20,7 @@ public class UserService {
     }
 
     @SuppressWarnings("null")
-    public Optional<User>  getUserById(String id) {
+    public Optional<User> getUserById(String id) {
         return userRepository.findById(id);
     }
 
@@ -56,7 +52,7 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public User saveOrUpdate(User toSave){
+    public User saveOrUpdate(User toSave) {
         return userRepository.save(toSave);
     }
 

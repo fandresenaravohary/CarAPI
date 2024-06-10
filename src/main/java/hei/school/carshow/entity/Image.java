@@ -1,4 +1,4 @@
-package hei.school.carshow.db.entity;
+package hei.school.carshow.entity;
 
 
 import jakarta.persistence.*;
@@ -13,9 +13,9 @@ import lombok.NoArgsConstructor;
 @Table(name = "image")
 public class Image {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_image", nullable = false)
-    private String id_image;
+    private String imageId;
 
     @Column(name = "url")
     private String url;

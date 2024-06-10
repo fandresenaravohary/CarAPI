@@ -2,12 +2,12 @@ package hei.school.carshow.exception;
 
 import org.springframework.http.HttpStatus;
 
-public class InternalServerErrorException extends ApiException{
+public class InternalServerErrorException extends ApiException {
     public InternalServerErrorException(String message) {
         super(message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    public InternalServerErrorException(){
+    public InternalServerErrorException() {
         super("Internal Server Error", HttpStatus.BAD_REQUEST);
     }
 }

@@ -1,8 +1,8 @@
 package hei.school.carshow.controller;
 
-import hei.school.carshow.db.entity.Car;
-import hei.school.carshow.service.CarService;
-import org.springframework.beans.factory.annotation.Autowired;
+import hei.school.carshow.entity.Car;
+import hei.school.carshow.service.impl.CarService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequiredArgsConstructor
 public class CarController {
 
-    @Autowired
     private CarService carService;
 
     @GetMapping("/cars")

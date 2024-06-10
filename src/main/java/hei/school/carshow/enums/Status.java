@@ -1,5 +1,8 @@
-package hei.school.carshow.db.entity.enumm;
+package hei.school.carshow.enums;
 
+/**
+ * Hajao ny norme
+ */
 public enum Status {
     pending,
     validated,

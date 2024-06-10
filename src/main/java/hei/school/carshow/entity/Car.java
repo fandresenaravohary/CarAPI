@@ -1,4 +1,4 @@
-package hei.school.carshow.db.entity;
+package hei.school.carshow.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @Table(name = "car")
 public class Car {
     @Id
-    @Column(name = "id_car", nullable = false)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private String id_car;
+    @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String carId;
 
     @Column(name = "name")
     private String name;
@@ -33,13 +33,13 @@ public class Car {
     private String color;
 
     @Column(name = "motor_type")
-    private String motor_type;
+    private String motorType;
 
     @Column(name = "power", columnDefinition = "TEXT")
     private String power;
 
     @Column(name = "place_number", columnDefinition = "INT")
-    private int place_number;
+    private int placeNumber;
 
     @Column(name = "status")
     private String Status;

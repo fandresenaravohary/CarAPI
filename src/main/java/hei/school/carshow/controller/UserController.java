@@ -1,21 +1,18 @@
 package hei.school.carshow.controller;
 
-import hei.school.carshow.db.entity.User;
+import hei.school.carshow.entity.User;
 import hei.school.carshow.exception.NotFoundException;
-import hei.school.carshow.service.UserService;
+import hei.school.carshow.service.impl.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @CrossOrigin
 @RestController
 @RequiredArgsConstructor
 public class UserController {
-    @Autowired
     private final UserService userService;
 
     @GetMapping("/admin/Users")
@@ -49,7 +46,7 @@ public class UserController {
     }
 
     @GetMapping("/users/{userId}")
-    public User getUserById(@PathVariable String userId){
+    public User getUserById(@PathVariable String userId) {
         return userService.getUserById(userId).orElseThrow(NotFoundException::new);
     }
 
