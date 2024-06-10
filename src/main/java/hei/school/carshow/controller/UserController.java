@@ -16,7 +16,7 @@ import java.util.UUID;
 public class UserController {
     private final UserService userService;
 
-    @GetMapping("/admin/Users")
+    @GetMapping("/admin/users")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
@@ -26,12 +26,12 @@ public class UserController {
         return userService.getUserById(id).orElseThrow(NotFoundException::new);
     }*/
 
-    @PostMapping("/User")
+    @PostMapping("/users")
     public User createUser(@RequestBody User user) {
         return userService.createUser(user);
     }
 
-    @PutMapping("/admin/User/{id}")
+    @PutMapping("/admin/user/{id}")
     public ResponseEntity<User> updateUser(@PathVariable UUID id, @RequestBody User updateUser) {
         User updatedUser = userService.updateUser(id, updateUser);
         if (updatedUser != null) {
@@ -41,7 +41,7 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/admin/User/Delete/{id}")
+    @DeleteMapping("/admin/user/delete/{id}")
     public void deleteUserById(@PathVariable UUID id) {
         userService.deleteUserById(id);
     }

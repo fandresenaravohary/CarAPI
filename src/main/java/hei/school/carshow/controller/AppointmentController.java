@@ -20,7 +20,7 @@ public class AppointmentController {
         return appointmentService.getAllAppointement();
     }
 
-    @PostMapping("/newAppointment")
+    @PostMapping("/new-appointment")
     public Appointment createAppointment(@RequestBody Appointment appointment) {
         return appointmentService.createAppointment(appointment);
     }

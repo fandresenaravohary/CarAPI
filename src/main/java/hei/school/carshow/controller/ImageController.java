@@ -15,7 +15,7 @@ import java.util.UUID;
 public class ImageController {
     public final ImageService imageService;
 
-    @GetMapping("/Images")
+    @GetMapping("/images")
     public List<Image> findAllImage() {
         return imageService.getAllImage();
     }
