@@ -19,7 +19,7 @@ import java.util.UUID;
 public class Appointment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID appointmentId;
+    private UUID id;
 
     private String name;
 

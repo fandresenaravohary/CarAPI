@@ -17,7 +17,7 @@ public class Car {
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID carId;
+    private UUID id;
 
     private String name;
 
@@ -41,8 +41,4 @@ public class Car {
     private String Status;
 
     private String type;
-
-    @ManyToOne
-    private Image image;
-
 }

@@ -36,6 +36,6 @@ public interface CarRepository extends JpaRepository<Car, UUID> {
 
 
     @Query("select new hei.school.carshow.dtos.CarInfoDTO(c.brand, c.color, c.description, c.model, c.motorType, c.name, c.power, c.price, c.type, i.url) " +
-            "from Car c inner join Image i on i.imageId = c.image.imageId")
+            "from Image i inner join i.car c")
     List<CarInfoDTO> findCarInfo();
 }

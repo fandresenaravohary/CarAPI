@@ -12,7 +12,7 @@ public class UserMapper {
                 .setEmail(userRequest.email())
                 .setPwd(userRequest.password())
                 .setName(userRequest.name())
-                .setUserId(userRequest.id());
+                .setId(userRequest.id());
     }
 
 }

@@ -3,7 +3,6 @@ package hei.school.carshow.service.impl;
 import hei.school.carshow.dtos.CarInfoDTO;
 import hei.school.carshow.dtos.CarTypePriceDTO;
 import hei.school.carshow.entity.Car;
-import hei.school.carshow.entity.Image;
 import hei.school.carshow.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -49,8 +48,6 @@ public class CarService {
             carToUpdate.setStatus(updatedCar.getStatus());
             carToUpdate.setType(updatedCar.getType());
 
-            Image image = new Image();
-            carToUpdate.setImage(image);
 
             return carRepository.save(carToUpdate);
         } else {

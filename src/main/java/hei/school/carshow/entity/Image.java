@@ -17,9 +17,14 @@ import java.util.UUID;
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID imageId;
+    private UUID id;
 
     @Column(columnDefinition = "TEXT")
     private String url;
+
+
+    @ManyToOne
+    @JoinColumn(name = "car_id")
+    private Car car;
 
 }
